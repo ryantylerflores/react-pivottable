@@ -12,7 +12,7 @@ import Draggable from 'react-draggable';
 export class DraggableAttribute extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false, filterText: ''};
+    this.state = {open: false, filterText: '', x: 0, y: 0};
   }
 
   toggleValue(value) {
@@ -57,6 +57,10 @@ export class DraggableAttribute extends React.Component {
             zIndex: this.props.zIndex
           }}
           onClick={() => this.props.moveFilterBoxToTop(this.props.name)}
+          onMouseMove={(e) => {
+            console.log(this.state.x, this.state.y);
+            return this.setState({x: e.clientX, y: e.clientY});
+          }}
         >
           <a onClick={() => this.setState({open: false})} className="pvtCloseX">
             ×
